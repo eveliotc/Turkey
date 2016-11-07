@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol TweetCellDelegate {
+  
+  func tweetCell(tweetCell: TweetCell, didTapProfile user: User)
+}
+
 class TweetCell: BaseTableViewCell {
   
   @IBOutlet weak var photoImageView: UIImageView!
@@ -30,10 +35,26 @@ class TweetCell: BaseTableViewCell {
     }
   }
   
+  var delegate: TweetCellDelegate?
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     photoImageView.layer.cornerRadius = 5
     photoImageView.clipsToBounds = true
+    
+    photoImageView.addGestureRecognizer(createProfileTap())
+    nameLabel.addGestureRecognizer(createProfileTap())
+    handleTimeLabel.addGestureRecognizer(createProfileTap())
+  }
+  
+  private func createProfileTap() -> UITapGestureRecognizer {
+    let tap = UITapGestureRecognizer()
+    tap.addTarget(self, action: #selector(onProfileTap))
+    return tap
+  }
+  
+  @objc private func onProfileTap() {
+    delegate?.tweetCell(tweetCell: self, didTapProfile: tweet.user)
   }
 
   override func prepareForReuse() {

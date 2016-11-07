@@ -12,7 +12,7 @@ class LogInController: UIViewController {
   
   @IBAction func onLoginWithTwitterTapped(_ sender: Any) {
     AccountManager.shared.login {
-      self.performSegue(withIdentifier: "PostLogInSegue", sender: self)
+      NavigationManager.shared.toInitial(from: self)
     }
   }
 }

@@ -32,6 +32,20 @@ class TweetController: UIViewController {
     
     photoImageView.layer.cornerRadius = 5
     photoImageView.clipsToBounds = true
+    
+    photoImageView.addGestureRecognizer(createProfileTap())
+    nameLabel.addGestureRecognizer(createProfileTap())
+    handleTimeLabel.addGestureRecognizer(createProfileTap())
+  }
+  
+  private func createProfileTap() -> UITapGestureRecognizer {
+    let tap = UITapGestureRecognizer()
+    tap.addTarget(self, action: #selector(onProfileTap))
+    return tap
+  }
+  
+  @objc private func onProfileTap() {
+    NavigationManager.shared.displayProfile(tweet.user, from: self)
   }
 
 }

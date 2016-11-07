@@ -11,6 +11,12 @@ import BDBOAuth1Manager
 
 private let kBase = "https://api.twitter.com"
 
+enum Timeline: String {
+  case home = "home_timeline"
+  case user = "user_timeline"
+  case replies = "mentions_timeline"
+}
+
 class TwitterClient: BDBOAuth1SessionManager {
   static let shared = TwitterClient(baseURL: URL(string: kBase)!, consumerKey: kKey, consumerSecret: kSecret)!
   
@@ -60,7 +66,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     })
   }
   
-  func homeTimeline(sinceId: Int64? = nil, maxId: Int64? = nil, failure: ((Error?) -> ())? = nil, success: @escaping (([Tweet]) -> ())) {
+  func timeline(_ kind: Timeline, userId: String? = nil, sinceId: Int64? = nil, maxId: Int64? = nil, failure: ((Error?) -> ())? = nil, success: @escaping (([Tweet]) -> ())) {
     
     var params: [String : Any] = ["count": 20]
     if let maxId = maxId {
@@ -69,7 +75,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     if let sinceId = sinceId {
       params["since_id"] = sinceId
     }
-    get("1.1/statuses/home_timeline.json", parameters: params,
+    if let userId = userId {
+      params["user_id"] = userId
+    }
+    get("1.1/statuses/\(kind.rawValue).json", parameters: params,
         success: { ( _, response ) in
           self.log("Got response \(response)")
           let array = response as! [NSDictionary]

@@ -10,4 +10,5 @@ target 'Turkey' do
   pod 'BDBOAuth1Manager'
   pod 'JGProgressHUD'
   pod 'SVPullToRefresh'
+  pod 'SideMenuController'
 end

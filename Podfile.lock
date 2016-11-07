@@ -24,23 +24,23 @@ PODS:
     - AFNetworking/NSURLConnection (~> 2.6.0)
     - AFNetworking/NSURLSession (~> 2.6.0)
   - JGProgressHUD (1.4)
-  - ObjectMapper (2.2.0)
+  - SideMenuController (0.2.0)
   - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - BDBOAuth1Manager
   - JGProgressHUD
-  - ObjectMapper (~> 2.2)
+  - SideMenuController
   - SVPullToRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BDBOAuth1Manager: cd5a5872f355ca38180d52ca2dd844f0b0c84797
   JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
-  ObjectMapper: 4060d739febae11ab0c6af8d786f98667c82e1bd
+  SideMenuController: fe6ce032847d4021ac5ead7ee1b05364df5739e7
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: 29423b48e2d45a9ad67e8b20ef861b283889f19f
+PODFILE CHECKSUM: 8120600998a9a1541a0c2ddf6cb54acec725261e
 
 COCOAPODS: 1.1.1

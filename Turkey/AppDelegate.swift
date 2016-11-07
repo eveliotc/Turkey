@@ -19,11 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let accountManager = AccountManager.shared
     accountManager.restore()
     
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let controller = accountManager.hasCredentials()
-      ? storyboard.instantiateViewController(withIdentifier: "HomeNavigationController")
-      : storyboard.instantiateInitialViewController()
-    window?.rootViewController = controller
+    window?.rootViewController = NavigationManager.shared.rootViewController
     return true
   }
   
